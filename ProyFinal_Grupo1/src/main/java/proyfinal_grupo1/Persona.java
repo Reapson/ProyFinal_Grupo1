@@ -85,4 +85,5 @@ public abstract class Persona {
     public abstract void leerPersonas();
     public abstract void editarPersona();
     public abstract void eliminarPersona();
+    public abstract void actualizarBD();
 }

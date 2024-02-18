@@ -12,7 +12,7 @@ public abstract class Persona {
     private String correo;
     private double numTelefono;
 
-    //Constructor
+    //Constructores
     public Persona(int numeroCedula, String nombre, String primerApellido, String provincia, String canton, String correo, double numTelefono) {
         this.numeroCedula = numeroCedula;
         this.nombre = nombre;
@@ -21,6 +21,10 @@ public abstract class Persona {
         this.canton = canton;
         this.correo = correo;
         this.numTelefono = numTelefono;
+    }
+    
+    public Persona(String correo) {
+        this.correo = correo;
     }
 
     //Getters y Setters

@@ -120,25 +120,41 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        //Variable que indica si se ha encontrado el usuario
+        boolean encontrado = false;
+
+        //Configuracion del boton de inicio de sesion, el ciclo for es para buscar el usuario y la contraseña en la lista de usuarios
         for(Usuario u : main.usuarios){
+            //Primero busca el correo en la lista
             if (u.getCorreo().equals(txtUsuario.getText())){
+                //Si encuentra el correo busca que coincida con la contraseña
                 if (u.getPassword().equals(txtContraseña.getText())){
+                    //Si coincide con la contraseña y es admin, abre la interfaz admin
                     if (u.isAdministrador()){
-                        //Se llama al JFrame principal para los usuarios administradores
+                        //Se llama al JFrame para los usuarios admin
+                        MenuAdmin menuA = new MenuAdmin();
+                        this.dispose();
+                        menuA.setVisible(true);
+                        encontrado = true;
                         break;
+                    //Si coincide con la contraseña y no es admin, abre la interfaz de empleado
                     }else{
                         //Se llama al JFrame para los usuarios regulares
+                        MenuEmpleado menuE = new MenuEmpleado();
+                        this.dispose();
+                        menuE.setVisible(true);
+                        encontrado = true;
                         break;
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "La contraseña ingresada es incorrecta.");
-                    txtContraseña.setText("");
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "El usuario ingresado no existe.");
-                txtUsuario.setText("");
-                txtContraseña.setText("");
             }
+        }
+        
+        //Si no encuentra el usuario ingresado o la contraseña esta mal muestra el mensaje de error
+        if (encontrado==false){
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos, vuelvalo a intentar.");
+            txtUsuario.setText("");
+            txtContraseña.setText("");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

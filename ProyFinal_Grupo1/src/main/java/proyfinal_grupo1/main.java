@@ -27,10 +27,12 @@ public class main {
     //Main
     public static void main(String[] args) {
         //Creacion del usuario inicial
-        Usuario usuarioInicial = new Usuario(true, "12345678", "josueanticona@gmail.com");
+        Usuario usuarioInicialAdmin = new Usuario(true, "123", "josueanticona@gmail.com");
+        Usuario usuarioInicialEmple = new Usuario(false, "abc", "rossemarycarballo@gmail.com");
         
         //Agregar usuario inicial a lista de usuarios
-        usuarios.add(usuarioInicial);
+        usuarios.add(usuarioInicialAdmin);
+        usuarios.add(usuarioInicialEmple);
         
         //Se inicia la interfaz con el inicio de sesion
         Inicio_Sesion inicio = new Inicio_Sesion();

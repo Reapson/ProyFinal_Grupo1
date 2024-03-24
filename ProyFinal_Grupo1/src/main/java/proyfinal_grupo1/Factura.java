@@ -3,22 +3,29 @@
 
 package proyfinal_grupo1;
 
+import java.sql.Date;
+
 public class Factura {
     //Variables
     private int numFactura;
-    private Caso caso;
+    private int caso;
     private double cobroServicio;
     private double cobroImpuestos;
     private double montoFinal;
-    //FALTA IMPLEMENTAR FECHA PARA REPORTE DE FACTURACION MENSUAL (C)
+    private String ano;
+    private String mes;
+    private String dia;
     
     //Constructor
-    public Factura(int numFactura, Caso caso, double cobroServicio, double cobroImpuestos, double montoFinal) {
+    public Factura(int numFactura, int caso, double cobroServicio, double cobroImpuestos, double montoFinal, String ano, String mes, String dia) {
         this.numFactura = numFactura;
         this.caso = caso;
         this.cobroServicio = cobroServicio;
         this.cobroImpuestos = cobroImpuestos;
         this.montoFinal = montoFinal;
+        this.ano = ano;
+        this.mes = mes;
+        this.dia = dia;
     }
     
     //Getters y Setters
@@ -30,11 +37,11 @@ public class Factura {
         this.numFactura = numFactura;
     }
 
-    public Caso getCaso() {
+    public int getCaso() {
         return caso;
     }
 
-    public void setCaso(Caso caso) {
+    public void setCaso(int caso) {
         this.caso = caso;
     }
 
@@ -61,6 +68,32 @@ public class Factura {
     public void setMontoFinal(double montoFinal) {
         this.montoFinal = montoFinal;
     }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    
     
     //Metodos de la clase Factura
     public void actualizarBD(){

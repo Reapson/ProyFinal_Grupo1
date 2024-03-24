@@ -75,6 +75,7 @@ public class AdministracionProveedores extends javax.swing.JFrame {
                 EMPRESA_PROVEEDOR = resultset.getString("EMPRESA_PROVEEDOR");
                 PROD_REP_PROVEEDOR = resultset.getString("PROD_REP_PROVEEDOR");
                 
+                
                 //Se agrega al modelo
                 modelo.addRow(new Object[]{ID_PROVEEDOR, NOMBRE_PROVEEDOR, APELLIDO_PROVEEDOR, PROVINCIA_PROVEEDOR, CANTON_PROVEEDOR, CORREO_PROVEEDOR, TELEFONO_PROVEEDOR, EMPRESA_PROVEEDOR, PROD_REP_PROVEEDOR});
             }

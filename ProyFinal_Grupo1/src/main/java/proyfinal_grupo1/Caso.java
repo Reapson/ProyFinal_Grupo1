@@ -82,12 +82,12 @@ public class Caso {
     }
     
     //Metodos de la clase Caso
-    public void insertarCaso(){
-        //METODO PARA INSERTAR UN CASO NUEVO A LA ESTRUCTURA DE DATOS
+    public void actualizarBD(){
+        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
     
-    public void leerCaso(){
-        //METODO PARA CONSULTAR LA ESTRUCTURA DE DATOS
+    public void insertarCaso(){
+        //METODO PARA INSERTAR UN CASO NUEVO A LA ESTRUCTURA DE DATOS
     }
     
     public void editarCaso(){
@@ -96,9 +96,5 @@ public class Caso {
     
     public void eliminarCaso(){
         //METODO PARA ELIMINAR UN REGISTRO DE LA ESTRUCTURA DE DATOS
-    }
-    
-    public void actualizarBD(){
-        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
 }

@@ -44,13 +44,13 @@ public class Cliente extends Persona{
     
     //Metodos de la clase Cliente
     @Override
-    public void insertarPersona(){
-        //METODO PARA INSERTAR UNA PERSONA NUEVA A LA ESTRUCTURA DE DATOS
+    public void actualizarBD(){
+        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
     
     @Override
-    public void leerPersonas(){
-        //METODO PARA CONSULTAR LA ESTRUCTURA DE DATOS
+    public void insertarPersona(){
+        //METODO PARA INSERTAR UNA PERSONA NUEVA A LA ESTRUCTURA DE DATOS
     }
     
     @Override
@@ -61,10 +61,5 @@ public class Cliente extends Persona{
     @Override
     public void eliminarPersona(){
         //METODO PARA ELIMINAR UN REGISTRO DE LA ESTRUCTURA DE DATOS
-    }
-    
-    @Override
-    public void actualizarBD(){
-        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
 }

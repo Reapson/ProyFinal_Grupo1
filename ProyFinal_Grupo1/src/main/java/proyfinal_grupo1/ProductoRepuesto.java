@@ -82,12 +82,12 @@ public class ProductoRepuesto {
     }
     
     //Metodos de la clase ProductoRepuesto
+    public void actualizarBD(){
+        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
+    }
+    
     public void insertarObjeto(){
         //METODO PARA INSERTAR UN OBJETO NUEVO A LA ESTRUCTURA DE DATOS
-    }
-
-    public void leerObjetos(){
-        //METODO PARA CONSULTAR LA ESTRUCTURA DE DATOS
     }
 
     public void editarObjeto(){
@@ -96,9 +96,5 @@ public class ProductoRepuesto {
 
     public void eliminarObjeto(){
         //METODO PARA ELIMINAR UN REGISTRO DE LA ESTRUCTURA DE DATOS
-    }
-    
-    public void actualizarBD(){
-        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
 }

@@ -15,24 +15,17 @@ Jeremias Carballo Chavarria
 
 package proyfinal_grupo1;
 
-
-import java.util.*;
 import proyfinal_grupo1.JFrame_Forms.*;
 
 public class main {
-
-    //Creacion de la lista que va a almacenar los usuarios del sistema
-    public static List<Usuario> usuarios = new ArrayList<>();
+    //Variable que almacenara si el usuario es administrador o no
+    public static boolean Administrador;
     
     //Main
     public static void main(String[] args) {
-        //Creacion del usuario inicial
-        Usuario usuarioInicialAdmin = new Usuario(true, "123", "josueanticona@gmail.com");
-        Usuario usuarioInicialEmple = new Usuario(false, "abc", "rossemarycarballo@gmail.com");
-        
-        //Agregar usuario inicial a lista de usuarios
-        usuarios.add(usuarioInicialAdmin);
-        usuarios.add(usuarioInicialEmple);
+        //Conexion a la BD
+        Conexion con = new Conexion();
+        con.conectarBD();
         
         //Se inicia la interfaz con el inicio de sesion
         Inicio_Sesion inicio = new Inicio_Sesion();

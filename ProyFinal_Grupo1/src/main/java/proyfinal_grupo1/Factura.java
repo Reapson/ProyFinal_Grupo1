@@ -10,6 +10,7 @@ public class Factura {
     private double cobroServicio;
     private double cobroImpuestos;
     private double montoFinal;
+    //FALTA IMPLEMENTAR FECHA PARA REPORTE DE FACTURACION MENSUAL (C)
     
     //Constructor
     public Factura(int numFactura, Caso caso, double cobroServicio, double cobroImpuestos, double montoFinal) {
@@ -62,12 +63,12 @@ public class Factura {
     }
     
     //Metodos de la clase Factura
-    public void insertarFactura(){
-        //METODO PARA INSERTAR UNA FACTURA NUEVA A LA ESTRUCTURA DE DATOS
+    public void actualizarBD(){
+        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
     
-    public void leerFactura(){
-        //METODO PARA CONSULTAR LA ESTRUCTURA DE DATOS
+    public void insertarFactura(){
+        //METODO PARA INSERTAR UNA FACTURA NUEVA A LA ESTRUCTURA DE DATOS
     }
     
     public void editarFactura(){
@@ -76,9 +77,5 @@ public class Factura {
     
     public void eliminarFactura(){
         //METODO PARA ELIMINAR UN REGISTRO DE LA ESTRUCTURA DE DATOS
-    }
-    
-    public void actualizarBD(){
-        //METODO PARA ACTUALIZAR LA BASE DE DATOS CON LA ESTRUCTURA DE DATOS DEL PROGRAMA
     }
 }

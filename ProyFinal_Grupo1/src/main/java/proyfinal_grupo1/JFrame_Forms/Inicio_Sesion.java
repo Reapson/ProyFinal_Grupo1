@@ -1,15 +1,27 @@
 package proyfinal_grupo1.JFrame_Forms;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import proyfinal_grupo1.*;
         
 public class Inicio_Sesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio_Sesion
-     */
+    //Variable para conexion con BD
+    private final Conexion conn = new Conexion();
+    
     public Inicio_Sesion() {
         initComponents();
+    }
+    //Metodo para revisar que todas las casillas tengan un valor
+    private boolean checkCasillas(){
+        if("".equals(txtUsuario.getText()) || "".equals(txtContraseña.getText())){
+            JOptionPane.showMessageDialog(null, "Debe de llenar todos los apartados!");
+            return false;
+        }else{
+            return true;
+        }
     }
 
     /**
@@ -26,8 +38,8 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         lbltitulo2 = new javax.swing.JLabel();
         lbltitulo = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
+        txtContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio Sesion");
@@ -63,22 +75,21 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbltitulo)
-                                .addComponent(lbltitulo2))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(28, 28, 28))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbltitulo)
+                                    .addComponent(lbltitulo2))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                    .addComponent(txtUsuario))))
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lbltitulo1)
-                        .addGap(62, 62, 62))))
+                        .addGap(54, 54, 54))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,12 +101,12 @@ public class Inicio_Sesion extends javax.swing.JFrame {
                     .addComponent(lbltitulo2)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbltitulo)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,32 +134,66 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         //Variable que indica si se ha encontrado el usuario
         boolean encontrado = false;
 
-        //Configuracion del boton de inicio de sesion, el ciclo for es para buscar el usuario y la contraseña en la lista de usuarios
-        for(Usuario u : main.usuarios){
-            //Primero busca el correo en la lista
-            if (u.getCorreo().equals(txtUsuario.getText())){
-                //Si encuentra el correo busca que coincida con la contraseña
-                if (u.getPassword().equals(txtContraseña.getText())){
-                    //Si coincide con la contraseña y es admin, abre la interfaz admin
-                    if (u.isAdministrador()){
+        //Se crea el atributo conexion, se le asigna el metodo de conexion a bd ya hecho anteriormente
+        Connection conexion = conn.conectarBD();
+        //Esta variable almacenara la linea de codigo sql que va a ser ejecutada para sacar el resulset y traerlo al programa
+        String sql = "SELECT CEDULA_USUARIO, CONTRASENA, PERMISOS from usuarios";
+        
+        //Se crean las variables que combinen con los atributos de la bd
+        int CEDULA_USUARIO;
+        String CONTRASENA;
+        String PERMISOS;
+        
+        try{
+            //Luego de la conexion vamos a querer sacar un statement
+            Statement statement;
+            //Se le asigna la variable que lo conectara y sacara el statement de la bd
+            statement = conexion.createStatement();
+            //Se crea el resulset, es el valor que ocupamos para sacar la data de la bd, este sale del statement
+            ResultSet resultset;
+            //El resulset almacenara el valor que devuelve executequery(codigo select del MySQL) del statement
+            resultset = statement.executeQuery(sql);
+            
+            //Mientras exista un siguiente en el resultset
+            while(resultset.next()){
+                //Se le asigna los valores de los registros de la base de datos al modelo
+                CEDULA_USUARIO = resultset.getInt("CEDULA_USUARIO");
+                CONTRASENA = resultset.getString("CONTRASENA");
+                PERMISOS = resultset.getString("PERMISOS");
+                
+                //Si el usuario y la contrasena coinciden
+                if ((CEDULA_USUARIO == Integer.parseInt(txtUsuario.getText().trim())) && CONTRASENA.equals(txtContraseña.getText())){
+                    //Se chequea si es admin para abrir la interfaz de admin
+                    if ("A".equals(PERMISOS)){
                         //Se llama al JFrame para los usuarios admin
                         MenuAdmin menuA = new MenuAdmin();
                         this.dispose();
                         menuA.setVisible(true);
                         encontrado = true;
+                        main.Administrador = true;
                         break;
-                    //Si coincide con la contraseña y no es admin, abre la interfaz de empleado
-                    }else{
+                    //Si no es admin se abre la interfaz regular
+                    }else if ("R".equals(PERMISOS)){
                         //Se llama al JFrame para los usuarios regulares
                         MenuEmpleado menuE = new MenuEmpleado();
                         this.dispose();
                         menuE.setVisible(true);
                         encontrado = true;
+                        main.Administrador = false;
                         break;
                     }
                 }
             }
+            
+            //Se cierra todo
+            resultset.close();
+            statement.close();
+            conexion.close();
+            
+        }catch (Exception e){
+            System.out.println(e);
         }
+
         
         //Si no encuentra el usuario ingresado o la contraseña esta mal muestra el mensaje de error
         if (encontrado==false){
@@ -199,7 +244,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JLabel lbltitulo1;
     private javax.swing.JLabel lbltitulo2;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

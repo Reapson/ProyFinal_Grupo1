@@ -23,8 +23,8 @@ public abstract class Persona {
         this.numTelefono = numTelefono;
     }
     
-    public Persona(String correo) {
-        this.correo = correo;
+    public Persona(int numeroCedula) {
+        this.numeroCedula = numeroCedula;
     }
 
     //Getters y Setters
@@ -86,7 +86,6 @@ public abstract class Persona {
     
     //Metodos abstractos de la clase Persona
     public abstract void insertarPersona();
-    public abstract void leerPersonas();
     public abstract void editarPersona();
     public abstract void eliminarPersona();
     public abstract void actualizarBD();

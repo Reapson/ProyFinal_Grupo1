@@ -1,5 +1,5 @@
 //Clase Caso, en esta clase se manejaran todos los casos y el historial de estos casos
-//Aqui se llevara seguimiento de los casos de soporte
+//Aqui se llevara seguimiento de los casos de soporte 
 
 package proyfinal_grupo1;
 

@@ -6,19 +6,19 @@ package proyfinal_grupo1;
 public class Caso {
     //Variables
     private int numCaso;
-    private Tecnico tecnicoAsignado;
-    private Cliente clienteAsignado;
-    private ProductoRepuesto parteReemplazada;
+    private int cedulaTecnico;
+    private int cedulaCliente;
+    private int idProductoReemplazar;
     private String descripcionProblema;
     private String descripcionSolucion;
     private String estadoCaso;
     
     //Constructor
-    public Caso(int numCaso, Tecnico tecnicoAsignado, Cliente clienteAsignado, ProductoRepuesto parteReemplazada, String descripcionProblema, String descripcionSolucion, String estadoCaso) {
+    public Caso(int numCaso, int cedulaTecnico, int cedulaCliente, int idProductoReemplazar, String descripcionProblema, String descripcionSolucion, String estadoCaso) {
         this.numCaso = numCaso;
-        this.tecnicoAsignado = tecnicoAsignado;
-        this.clienteAsignado = clienteAsignado;
-        this.parteReemplazada = parteReemplazada;
+        this.cedulaTecnico = cedulaTecnico;
+        this.cedulaCliente = cedulaCliente;
+        this.idProductoReemplazar = idProductoReemplazar;
         this.descripcionProblema = descripcionProblema;
         this.descripcionSolucion = descripcionSolucion;
         this.estadoCaso = estadoCaso;
@@ -33,28 +33,28 @@ public class Caso {
         this.numCaso = numCaso;
     }
 
-    public Tecnico getTecnicoAsignado() {
-        return tecnicoAsignado;
+    public int getCedulaTecnico() {
+        return cedulaTecnico;
     }
 
-    public void setTecnicoAsignado(Tecnico tecnicoAsignado) {
-        this.tecnicoAsignado = tecnicoAsignado;
+    public void setCedulaTecnico(int cedulaTecnico) {
+        this.cedulaTecnico = cedulaTecnico;
     }
 
-    public Cliente getClienteAsignado() {
-        return clienteAsignado;
+    public int getCedulaCliente() {
+        return cedulaCliente;
     }
 
-    public void setClienteAsignado(Cliente clienteAsignado) {
-        this.clienteAsignado = clienteAsignado;
+    public void setCedulaCliente(int cedulaCliente) {
+        this.cedulaCliente = cedulaCliente;
     }
 
-    public ProductoRepuesto getParteReemplazada() {
-        return parteReemplazada;
+    public int getIdProductoReemplazar() {
+        return idProductoReemplazar;
     }
 
-    public void setParteReemplazada(ProductoRepuesto parteReemplazada) {
-        this.parteReemplazada = parteReemplazada;
+    public void setIdProductoReemplazar(int idProductoReemplazar) {
+        this.idProductoReemplazar = idProductoReemplazar;
     }
 
     public String getDescripcionProblema() {

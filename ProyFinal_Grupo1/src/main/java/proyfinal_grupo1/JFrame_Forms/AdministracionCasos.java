@@ -32,18 +32,16 @@ public class AdministracionCasos extends javax.swing.JFrame {
         //Se crea el atributo conexion, se le asigna el metodo de conexion a bd ya hecho anteriormente
         Connection conexion = conn.conectarBD();
         //Esta variable almacenara la linea de codigo sql que va a ser ejecutada para sacar el resulset y traerlo al programa
-        String sql = "SELECT ID_PROVEEDOR, NOMBRE_PROVEEDOR, APELLIDO_PROVEEDOR, PROVINCIA_PROVEEDOR, CANTON_PROVEEDOR, CORREO_PROVEEDOR, TELEFONO_PROVEEDOR, EMPRESA_PROVEEDOR, PROD_REP_PROVEEDOR from proveedores";
+        String sql = "SELECT NUMERO_CASO, CEDULA_TECNICO, CEDULA_CLIENTE, ID_PRODUCTO_REEMPLAZAR, DESCRIPCION_PROBLEMA, DESCRIPCION_SOLUCION, ESTADO_CASO from casos";
         
         //Se crean las variables que combinen con los atributos de la bd
-        Integer ID_PROVEEDOR;
-        String NOMBRE_PROVEEDOR;
-        String APELLIDO_PROVEEDOR;
-        String PROVINCIA_PROVEEDOR;
-        String CANTON_PROVEEDOR;
-        String CORREO_PROVEEDOR;
-        Integer TELEFONO_PROVEEDOR;
-        String EMPRESA_PROVEEDOR;
-        String PROD_REP_PROVEEDOR;
+        Integer NUMERO_CASO;
+        Integer CEDULA_TECNICO;
+        Integer CEDULA_CLIENTE;
+        Integer ID_PRODUCTO_REEMPLAZAR;
+        String DESCRIPCION_PROBLEMA;
+        String DESCRIPCION_SOLUCION;
+        String ESTADO_CASO;
         
         try{
             //Luego de la conexion vamos a querer sacar un statement
@@ -56,7 +54,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
             resultset = statement.executeQuery(sql);
             
             //Headers del defaulttablemodel
-            String [] columnas = {"Cedula", "Nombre", "Apellido", "Provincia", "Canton", "Correo", "Telefono", "Empresa", "Producto/Repuesto"};
+            String [] columnas = {"Número de caso", "Cédula del técnico", "Cédula del cliente", "ID del producto a reemplazar", "Descripción del problema", "Descripción de la solución", "Estado del caso"};
             //Se crea el modelo de la tabla
             DefaultTableModel modelo = new DefaultTableModel();
             //Se le asignan los headers a la tabla
@@ -65,19 +63,17 @@ public class AdministracionCasos extends javax.swing.JFrame {
             //Mientras exista un siguiente en el resultset
             while(resultset.next()){
                 //Se le asigna los valores de los registros de la base de datos al modelo
-                ID_PROVEEDOR = resultset.getInt("ID_PROVEEDOR");
-                NOMBRE_PROVEEDOR = resultset.getString("NOMBRE_PROVEEDOR");
-                APELLIDO_PROVEEDOR = resultset.getString("APELLIDO_PROVEEDOR");
-                PROVINCIA_PROVEEDOR = resultset.getString("PROVINCIA_PROVEEDOR");
-                CANTON_PROVEEDOR = resultset.getString("CANTON_PROVEEDOR");
-                CORREO_PROVEEDOR = resultset.getString("CORREO_PROVEEDOR");
-                TELEFONO_PROVEEDOR = resultset.getInt("TELEFONO_PROVEEDOR");
-                EMPRESA_PROVEEDOR = resultset.getString("EMPRESA_PROVEEDOR");
-                PROD_REP_PROVEEDOR = resultset.getString("PROD_REP_PROVEEDOR");
+                NUMERO_CASO = resultset.getInt("NUMERO_CASO");
+                CEDULA_TECNICO = resultset.getInt("CEDULA_TECNICO");
+                CEDULA_CLIENTE = resultset.getInt("CEDULA_CLIENTE");
+                ID_PRODUCTO_REEMPLAZAR = resultset.getInt("ID_PRODUCTO_REEMPLAZAR");
+                DESCRIPCION_PROBLEMA = resultset.getString("DESCRIPCION_PROBLEMA");
+                DESCRIPCION_SOLUCION = resultset.getString("DESCRIPCION_SOLUCION");
+                ESTADO_CASO = resultset.getString("ESTADO_CASO");
                 
                 
                 //Se agrega al modelo
-                modelo.addRow(new Object[]{ID_PROVEEDOR, NOMBRE_PROVEEDOR, APELLIDO_PROVEEDOR, PROVINCIA_PROVEEDOR, CANTON_PROVEEDOR, CORREO_PROVEEDOR, TELEFONO_PROVEEDOR, EMPRESA_PROVEEDOR, PROD_REP_PROVEEDOR});
+                modelo.addRow(new Object[]{NUMERO_CASO, CEDULA_TECNICO, CEDULA_CLIENTE, ID_PRODUCTO_REEMPLAZAR, DESCRIPCION_PROBLEMA, DESCRIPCION_SOLUCION, ESTADO_CASO});
             }
             //Se cierra todo
             resultset.close();
@@ -85,7 +81,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
             conexion.close();
             
             //Se settea el modelo que se acaba de crear
-            tblProveedores.setModel(modelo);
+            tblCasos.setModel(modelo);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -98,11 +94,11 @@ public class AdministracionCasos extends javax.swing.JFrame {
             boolean existe = false; //Flag para detectar si la cedula existe dentro de la tabla
         
             //Recoge el valor de la cedula ingresado
-            cedula = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de cedula del registro que desea afectar"));
+            cedula = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de caso del registro que desea afectar"));
             
             //Ciclo que recorre la tabla buscando si el valor ingresado existe en la misma
-            for (int i = 0; i < tblProveedores.getRowCount();i++){
-                int row = (int) tblProveedores.getValueAt(i, 0);
+            for (int i = 0; i < tblCasos.getRowCount();i++){
+                int row = (int) tblCasos.getValueAt(i, 0);
                 
                 if(row == cedula){
                     existe = true;
@@ -116,7 +112,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
             //Si no existe
             }else{
                 //Se le informa al usuario y retorna valor cero
-                JOptionPane.showMessageDialog(null, "La cedula ingresada no existe en la tabla!");
+                JOptionPane.showMessageDialog(null, "El número de caso ingresado no existe en la tabla!");
                 return 0;
             }
         }catch(NumberFormatException e){
@@ -128,8 +124,8 @@ public class AdministracionCasos extends javax.swing.JFrame {
     
     //Metodo para revisar que todas las casillas tengan un valor
     private boolean checkCasillas(){
-        if("".equals(txtEmpresa.getText()) || "".equals(txtProdReg.getText()) || "".equals(txtCedula.getText()) || "".equals(txtNombre.getText()) || "".equals(txtApellido.getText()) ||
-                "".equals(txtProvincia.getText()) || "".equals(txtCanton.getText()) || "".equals(txtCorreo.getText()) || "".equals(txtTelefono.getText())){
+        if("".equals(txtnumCaso.getText()) || "".equals(txtcedulaTecnico.getText()) || "".equals(txtcedulaCliente.getText()) ||
+                "".equals(txtidProductoReemplazar.getText()) || "".equals(txtdescripcionProblema.getText()) || "".equals(txtdescripcionSolucion.getText()) || "".equals(txtestadoCaso.getText())){
             JOptionPane.showMessageDialog(null, "Debe de llenar todas las casillas!");
             return false;
         }else{
@@ -148,7 +144,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProveedores = new javax.swing.JTable();
+        tblCasos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -156,18 +152,14 @@ public class AdministracionCasos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
-        txtProvincia = new javax.swing.JTextField();
-        txtCanton = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        txtEmpresa = new javax.swing.JTextField();
-        txtProdReg = new javax.swing.JTextField();
-        txtCedula = new javax.swing.JTextField();
+        txtcedulaTecnico = new javax.swing.JTextField();
+        txtcedulaCliente = new javax.swing.JTextField();
+        txtidProductoReemplazar = new javax.swing.JTextField();
+        txtdescripcionProblema = new javax.swing.JTextField();
+        txtdescripcionSolucion = new javax.swing.JTextField();
+        txtestadoCaso = new javax.swing.JTextField();
+        txtnumCaso = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btnInsertar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -182,7 +174,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblCasos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -193,8 +185,8 @@ public class AdministracionCasos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblProveedores.setEnabled(false);
-        jScrollPane1.setViewportView(tblProveedores);
+        tblCasos.setEnabled(false);
+        jScrollPane1.setViewportView(tblCasos);
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,42 +194,40 @@ public class AdministracionCasos extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Nombre:");
+        jLabel3.setText("Cédula del técnico:");
 
         jLabel4.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Apellido:");
+        jLabel4.setText("Cédula del cliente");
 
         jLabel5.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Correo:");
+        jLabel5.setText("Descripción de la solución:");
 
         jLabel6.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Cantón:");
+        jLabel6.setText("Descripción del problema:");
 
         jLabel7.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Provincia:");
-
-        jLabel8.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Producto/Repuesto:");
-
-        jLabel9.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Empresa:");
+        jLabel7.setText("ID de producto a reemplazar:");
 
         jLabel10.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Teléfono:");
+        jLabel10.setText("Estado del caso:");
+
+        txtnumCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnumCasoActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Cédula:");
+        jLabel11.setText("Número de caso:");
 
         btnInsertar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnInsertar.setText("Insertar Proveedor");
+        btnInsertar.setText("Insertar Caso");
         btnInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertarActionPerformed(evt);
@@ -245,7 +235,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
         });
 
         btnEditar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnEditar.setText("Editar Proveedor");
+        btnEditar.setText("Editar Caso");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -253,7 +243,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
         });
 
         btnEliminar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnEliminar.setText("Eliminar Proveedor");
+        btnEliminar.setText("Eliminar Caso");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -279,20 +269,16 @@ public class AdministracionCasos extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCanton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProdReg, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcedulaTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtidProductoReemplazar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdescripcionProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdescripcionSolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtestadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtnumCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -308,41 +294,33 @@ public class AdministracionCasos extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnumCaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcedulaTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtidProductoReemplazar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtCanton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdescripcionProblema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdescripcionSolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtProdReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtestadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
                 .addComponent(btnInsertar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEditar)
@@ -352,7 +330,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
-        jLabel2.setText("Administración de Proveedores");
+        jLabel2.setText("Administración de Casos");
 
         btnMenu.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnMenu.setText("Menu");
@@ -370,15 +348,14 @@ public class AdministracionCasos extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnMenu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(300, 300, 300))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnMenu)
+                        .addGap(300, 300, 300)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,29 +392,32 @@ public class AdministracionCasos extends javax.swing.JFrame {
         //Revisa primero si todas las casillas tienen un valor
         if (checkCasillas()){
             //Revisa que el valor de la cedula sea mayor que cero
-            if (Integer.parseInt(txtCedula.getText()) <= 0){
-                JOptionPane.showMessageDialog(null, "La cedula no puede ser un valor menor a 1...");
+            if (Integer.parseInt(txtnumCaso.getText()) <= 0){
+                JOptionPane.showMessageDialog(null, "El número de caso no puede ser un valor menor a 1...");
             }else{
                 try{
                     //Se crean las variables que combinen con los atributos de la bd
-                    Proveedor proveedor = new Proveedor(txtEmpresa.getText().trim(), txtProdReg.getText().trim(), Integer.parseInt(txtCedula.getText().trim()), txtNombre.getText().trim(),
-                                                        txtApellido.getText().trim(), txtProvincia.getText().trim(), txtCanton.getText().trim(), txtCorreo.getText().trim(), 
-                                                        Integer.parseInt(txtTelefono.getText().trim()));
+                    Caso caso = new Caso(Integer.parseInt(txtnumCaso.getText().trim()),
+                     txtcedulaTecnico.getText().trim(),
+                     txtcedulaCliente.getText().trim(),
+                     txtidProductoReemplazar.getText().trim(),
+                     txtdescripcionProblema.getText().trim(),
+                     txtdescripcionSolucion.getText().trim(),
+                     txtestadoCaso.getText().trim());
+
                     //Conexion a bd
                     Connection conexion = conn.conectarBD();
                     //Se crea el statement
                     Statement statement = conexion.createStatement();
                     //Codigo sql a ejecutar
-                    String sql = "INSERT INTO proveedores(ID_PROVEEDOR, NOMBRE_PROVEEDOR, APELLIDO_PROVEEDOR, PROVINCIA_PROVEEDOR, CANTON_PROVEEDOR, CORREO_PROVEEDOR, TELEFONO_PROVEEDOR, EMPRESA_PROVEEDOR, PROD_REP_PROVEEDOR)"
-                                +"VALUES(" +proveedor.getNumeroCedula()+",'"
-                                           +proveedor.getNombre()+"','"
-                                           +proveedor.getPrimerApellido()+"','"
-                                           +proveedor.getProvincia()+"','"
-                                           +proveedor.getCanton()+"','"
-                                           +proveedor.getCorreo()+"',"
-                                           +proveedor.getNumTelefono()+",'"
-                                           +proveedor.getEmpresa()+"','"
-                                           +proveedor.getProductoRepuestoQueProvee()+"')";
+                    String sql = "INSERT INTO casos (NUMERO_CASO, CEDULA_TECNICO, CEDULA_CLIENTE, ID_PRODUCTO_REEMPLAZAR, DESCRIPCION_PROBLEMA, DESCRIPCION_SOLUCION, ESTADO_CASO)"
+                                +"VALUES(" +caso.getNumCaso()+",'"
+                                           +caso.getCedulaTecnico()+"','"
+                                           +caso.getCedulaCliente()+"','"
+                                           +caso.getIdProductoReemplazar()+"','"
+                                           +caso.getDescripcionProblema()+"','"
+                                           +caso.getDescripcionSolucion()+"',"
+                                           +caso.getEstadoCaso()+",'";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);
                     //Se informa si sale bien
@@ -459,13 +439,17 @@ public class AdministracionCasos extends javax.swing.JFrame {
         //Revisa si todas las casillas poseen un valor
         if (checkCasillas()){
             //Revisa si la cedula es mayor a 0
-            if (Integer.parseInt(txtCedula.getText()) <= 0){
-                JOptionPane.showMessageDialog(null, "La cedula no puede ser un valor menor a 1...");
+            if (Integer.parseInt(txtnumCaso.getText()) <= 0){
+                JOptionPane.showMessageDialog(null, "El número de caso no puede ser un valor menor a 1...");
             }else{
                 //Se crean las variables que combinen con los atributos de la bd
-                Proveedor proveedor = new Proveedor(txtEmpresa.getText().trim(), txtProdReg.getText().trim(), Integer.parseInt(txtCedula.getText().trim()), txtNombre.getText().trim(),
-                                                    txtApellido.getText().trim(), txtProvincia.getText().trim(), txtCanton.getText().trim(), txtCorreo.getText().trim(), 
-                                                    Integer.parseInt(txtTelefono.getText().trim()));
+                    Caso caso = new Caso(Integer.parseInt(txtnumCaso.getText().trim()),
+                     txtcedulaTecnico.getText().trim(),
+                     txtcedulaCliente.getText().trim(),
+                     txtidProductoReemplazar.getText().trim(),
+                     txtdescripcionProblema.getText().trim(),
+                     txtdescripcionSolucion.getText().trim(),
+                     txtestadoCaso.getText().trim());
 
                 //Variable para usar en el script sql al ejecutar
                 int id = obtenerCedula();
@@ -476,17 +460,15 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     //Se crea el statement
                     Statement statement = conexion.createStatement();
                     //Codigo sql a ejecutar
-                    String sql = "UPDATE proveedores SET "
-                               + "ID_PROVEEDOR = "+proveedor.getNumeroCedula()
-                               + ",NOMBRE_PROVEEDOR = '"+proveedor.getNombre()
-                               + "',APELLIDO_PROVEEDOR = '"+proveedor.getPrimerApellido()
-                               + "',PROVINCIA_PROVEEDOR = '"+proveedor.getProvincia()
-                               + "',CANTON_PROVEEDOR = '"+proveedor.getCanton()
-                               + "',CORREO_PROVEEDOR = '"+proveedor.getCorreo()
-                               + "',TELEFONO_PROVEEDOR = "+proveedor.getNumTelefono()
-                               + ",EMPRESA_PROVEEDOR = '"+proveedor.getEmpresa()
-                               + "',PROD_REP_PROVEEDOR = '"+proveedor.getProductoRepuestoQueProvee()+"' "
-                               + "WHERE ID_PROVEEDOR = " + id + "";
+                    String sql = "UPDATE casos SET "
+                               + "NUMERO_CASO = "+caso.getNumCaso()
+                               + ",CEDULA_TECNICO = '"+caso.getCedulaTecnico()
+                               + "',CEDULA_CLIENTE = '"+caso.getCedulaCliente()
+                               + "',ID_PRODUCTO_REEMPLAZAR = '"+caso.getIdProductoReemplazar()
+                               + "',DESCRIPCION_PROBLEMA = '"+caso.getDescripcionProblema()
+                               + "',DESCRIPCION_SOLUCION = '"+caso.getDescripcionSolucion()
+                               + "',ESTADO_CASO = "+caso.getEstadoCaso()+"' "
+                               + "WHERE NUMERO_CASO = " + id + "";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);
                     //Se informa si sale bien
@@ -517,7 +499,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
             //Se crea el statement
             Statement statement = conexion.createStatement();
             //Codigo sql a ejecutar
-            String sql = "DELETE FROM proveedores WHERE ID_PROVEEDOR = " + id + "";
+            String sql = "DELETE FROM casos WHERE NUMERO_CASO = " + id + "";
             //Se ejecuta el update que es el comando escrito anteriormente
             statement.executeUpdate(sql);
             //Se informa si sale bien
@@ -547,6 +529,10 @@ public class AdministracionCasos extends javax.swing.JFrame {
             menuE.setVisible(true);
         }
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void txtnumCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumCasoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnumCasoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,20 +586,16 @@ public class AdministracionCasos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProveedores;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCanton;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtEmpresa;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtProdReg;
-    private javax.swing.JTextField txtProvincia;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTable tblCasos;
+    private javax.swing.JTextField txtcedulaCliente;
+    private javax.swing.JTextField txtcedulaTecnico;
+    private javax.swing.JTextField txtdescripcionProblema;
+    private javax.swing.JTextField txtdescripcionSolucion;
+    private javax.swing.JTextField txtestadoCaso;
+    private javax.swing.JTextField txtidProductoReemplazar;
+    private javax.swing.JTextField txtnumCaso;
     // End of variables declaration//GEN-END:variables
 }

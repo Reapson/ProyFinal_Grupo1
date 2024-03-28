@@ -418,7 +418,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
                                            +caso.getDescripcionProblema()+"','"
                                            +caso.getDescripcionSolucion()+"',"
                                            +caso.getEstadoCaso()+",'";
-                    //Se ejecuta el update que es el comando escrito anteriormente
+                    //Se ejecuta el update que es el comando escrito anteriormente 
                     statement.executeUpdate(sql);
                     //Se informa si sale bien
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");

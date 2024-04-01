@@ -398,9 +398,9 @@ public class AdministracionCasos extends javax.swing.JFrame {
                 try{
                     //Se crean las variables que combinen con los atributos de la bd
                     Caso caso = new Caso(Integer.parseInt(txtnumCaso.getText().trim()),
-                     txtcedulaTecnico.getText().trim(),
-                     txtcedulaCliente.getText().trim(),
-                     txtidProductoReemplazar.getText().trim(),
+                     Integer.parseInt(txtcedulaTecnico.getText().trim()),
+                     Integer.parseInt(txtcedulaCliente.getText().trim()),
+                     Integer.parseInt(txtidProductoReemplazar.getText().trim()),
                      txtdescripcionProblema.getText().trim(),
                      txtdescripcionSolucion.getText().trim(),
                      txtestadoCaso.getText().trim());
@@ -444,9 +444,9 @@ public class AdministracionCasos extends javax.swing.JFrame {
             }else{
                 //Se crean las variables que combinen con los atributos de la bd
                     Caso caso = new Caso(Integer.parseInt(txtnumCaso.getText().trim()),
-                     txtcedulaTecnico.getText().trim(),
-                     txtcedulaCliente.getText().trim(),
-                     txtidProductoReemplazar.getText().trim(),
+                     Integer.parseInt(txtcedulaTecnico.getText().trim()),
+                     Integer.parseInt(txtcedulaCliente.getText().trim()),
+                     Integer.parseInt(txtidProductoReemplazar.getText().trim()),
                      txtdescripcionProblema.getText().trim(),
                      txtdescripcionSolucion.getText().trim(),
                      txtestadoCaso.getText().trim());

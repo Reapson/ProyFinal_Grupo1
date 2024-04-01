@@ -17,7 +17,7 @@ public class Conexion {
             Class.forName("com.mysql.cj.jdbc.Driver");
             //Le indica a la conexion la direccion de la base de datos para que se pueda conectar, junto al nombre de usuario y 
             //contrasena de acceso a la bd
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soportetecnico", "root", "10Estupidos");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soportetecnico", "root", "rosse082003");
             //Indicador de conexion exitosa
             System.out.println("Conexion Exitosa");
         }catch(Exception e){

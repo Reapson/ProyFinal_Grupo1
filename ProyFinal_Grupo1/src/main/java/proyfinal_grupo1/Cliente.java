@@ -5,12 +5,12 @@ package proyfinal_grupo1;
 
 public class Cliente extends Persona{
     //Variables
-    private boolean descuentoEmpresarial;
-    private boolean descuentoTerceraEdad;
+    private String descuentoEmpresarial;
+    private String descuentoTerceraEdad;
     private String sexo;
     
     //Constructor
-    public Cliente(boolean descuentoEmpresarial, boolean descuentoTerceraEdad, String sexo, int numeroCedula, String nombre, String primerApellido, String provincia, String canton, String correo, double numTelefono) {
+    public Cliente(String descuentoEmpresarial, String descuentoTerceraEdad, String sexo, int numeroCedula, String nombre, String primerApellido, String provincia, String canton, String correo, double numTelefono) {
         super(numeroCedula, nombre, primerApellido, provincia, canton, correo, numTelefono);
         this.descuentoEmpresarial = descuentoEmpresarial;
         this.descuentoTerceraEdad = descuentoTerceraEdad;
@@ -18,19 +18,19 @@ public class Cliente extends Persona{
     }
 
     //Getters and Setters
-    public boolean isDescuentoEmpresarial() {
+    public String isDescuentoEmpresarial() {
         return descuentoEmpresarial;
     }
 
-    public void setDescuentoEmpresarial(boolean descuentoEmpresarial) {
+    public void setDescuentoEmpresarial(String descuentoEmpresarial) {
         this.descuentoEmpresarial = descuentoEmpresarial;
     }
 
-    public boolean isDescuentoTerceraEdad() {
+    public String isDescuentoTerceraEdad() {
         return descuentoTerceraEdad;
     }
 
-    public void setDescuentoTerceraEdad(boolean descuentoTerceraEdad) {
+    public void setDescuentoTerceraEdad(String descuentoTerceraEdad) {
         this.descuentoTerceraEdad = descuentoTerceraEdad;
     }
 
@@ -61,5 +61,13 @@ public class Cliente extends Persona{
     @Override
     public void eliminarPersona(){
         //METODO PARA ELIMINAR UN REGISTRO DE LA ESTRUCTURA DE DATOS
+    }
+
+    public String getDescuentoEmpresarial() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getDescuentoTerceraEdad() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

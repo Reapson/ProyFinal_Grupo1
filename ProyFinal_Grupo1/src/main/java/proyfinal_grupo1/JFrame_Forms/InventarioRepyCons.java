@@ -405,7 +405,7 @@ public class InventarioRepyCons extends javax.swing.JFrame {
                 try{
                     //Se crean las variables que combinen con los atributos de la bd
                     ProductoRepuesto productoRepuesto = new ProductoRepuesto ( Integer.parseInt(txtCedula.getText().trim()), txtnombreProducto.getText().trim(),
-                        txtdescripcionProducto.getText().trim(), txttipoObjeto.getText().trim(), txtprecioCompra.getText().trim(), txtprecioVenta.getText().trim(),
+                        txtdescripcionProducto.getText().trim(), txttipoObjeto.getText().trim(), Integer.parseInt(txtprecioCompra.getText().trim()), Integer.parseInt(txtprecioVenta.getText().trim()),
                         Integer.parseInt(txtcantidad.getText().trim()));
                     //Conexion a bd
                     Connection conexion = conn.conectarBD();
@@ -445,9 +445,9 @@ public class InventarioRepyCons extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El ID de objeto no puede ser un valor menor a 1...");
             }else{
                 //Se crean las variables que combinen con los atributos de la bd
-                ProductoRepuesto productoRepuesto = new ProductoRepuesto(Integer.parseInt(txtCedula.getText().trim()), txtnombreProducto.getText().trim(),
-                    txtdescripcionProducto.getText().trim(), txttipoObjeto.getText().trim(), txtprecioCompra.getText().trim(), txtprecioVenta.getText().trim(),
-                    Integer.parseInt(txtcantidad.getText().trim()));
+                ProductoRepuesto productoRepuesto = new ProductoRepuesto ( Integer.parseInt(txtCedula.getText().trim()), txtnombreProducto.getText().trim(),
+                        txtdescripcionProducto.getText().trim(), txttipoObjeto.getText().trim(), Integer.parseInt(txtprecioCompra.getText().trim()), Integer.parseInt(txtprecioVenta.getText().trim()),
+                        Integer.parseInt(txtcantidad.getText().trim()));
 
                 //Variable para usar en el script sql al ejecutar 
                 int id = obtenerCedula();

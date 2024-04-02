@@ -187,6 +187,7 @@ public class InventarioRepyCons extends javax.swing.JFrame {
         ));
         tblRepuestos.setEnabled(false);
         jScrollPane2.setViewportView(tblRepuestos);
+        tblRepuestos.getAccessibleContext().setAccessibleName("");
 
         jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -413,13 +414,13 @@ public class InventarioRepyCons extends javax.swing.JFrame {
                     Statement statement = conexion.createStatement();
                     //Codigo sql a ejecutar
                     String sql = "INSERT INTO repuestos (ID_OBJETO, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, TIPO_OBJETO, PRECIO_COMPRA, PRECIO_VENTA, CANTIDAD)"
-                    +"VALUES(" +productoRepuesto.getIdObjeto()+"','"
+                    +"VALUES(" +productoRepuesto.getIdObjeto()+",'"
                     +productoRepuesto.getNombreProducto()+"','"
                     +productoRepuesto.getDescripcionProducto()+"','"
-                    +productoRepuesto.getTipoObjeto()+"','"
-                    +productoRepuesto.getPrecioCompra()+"',"
-                    +productoRepuesto.getPrecioVenta()+",'"
-                    +productoRepuesto.getCantidad()+"','";
+                    +productoRepuesto.getTipoObjeto()+"',"
+                    +productoRepuesto.getPrecioCompra()+","
+                    +productoRepuesto.getPrecioVenta()+","
+                    +productoRepuesto.getCantidad()+")";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);
                     //Se informa si sale bien
@@ -463,9 +464,9 @@ public class InventarioRepyCons extends javax.swing.JFrame {
                     + ",NOMBRE_PRODUCTO = '"+productoRepuesto.getNombreProducto()
                     + "',DESCRIPCION_PRODUCTO = '"+productoRepuesto.getDescripcionProducto()
                     + "',TIPO_OBJETO = '"+productoRepuesto.getTipoObjeto()
-                    + "',PRECIO_COMPRA = '"+productoRepuesto.getPrecioCompra()
-                    + "',PRECIO_VENTA = '"+productoRepuesto.getPrecioVenta()
-                    + "',CANTIDAD = "+productoRepuesto.getCantidad()+"' "
+                    + "',PRECIO_COMPRA = "+productoRepuesto.getPrecioCompra()
+                    + ",PRECIO_VENTA = "+productoRepuesto.getPrecioVenta()
+                    + ",CANTIDAD = "+productoRepuesto.getCantidad()+" "
                     + "WHERE ID_OBJETO = " + id + "";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);

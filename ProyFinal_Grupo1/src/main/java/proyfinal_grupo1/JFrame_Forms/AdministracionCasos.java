@@ -411,13 +411,13 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     Statement statement = conexion.createStatement();
                     //Codigo sql a ejecutar
                     String sql = "INSERT INTO casos (NUMERO_CASO, CEDULA_TECNICO, CEDULA_CLIENTE, ID_PRODUCTO_REEMPLAZAR, DESCRIPCION_PROBLEMA, DESCRIPCION_SOLUCION, ESTADO_CASO)"
-                                +"VALUES(" +caso.getNumCaso()+",'"
-                                           +caso.getCedulaTecnico()+"','"
-                                           +caso.getCedulaCliente()+"','"
-                                           +caso.getIdProductoReemplazar()+"','"
+                                +"VALUES(" +caso.getNumCaso()+","
+                                           +caso.getCedulaTecnico()+","
+                                           +caso.getCedulaCliente()+","
+                                           +caso.getIdProductoReemplazar()+",'"
                                            +caso.getDescripcionProblema()+"','"
-                                           +caso.getDescripcionSolucion()+"',"
-                                           +caso.getEstadoCaso()+",'";
+                                           +caso.getDescripcionSolucion()+"','"
+                                           +caso.getEstadoCaso()+"')";
                     //Se ejecuta el update que es el comando escrito anteriormente 
                     statement.executeUpdate(sql);
                     //Se informa si sale bien
@@ -462,12 +462,12 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     //Codigo sql a ejecutar
                     String sql = "UPDATE casos SET "
                                + "NUMERO_CASO = "+caso.getNumCaso()
-                               + ",CEDULA_TECNICO = '"+caso.getCedulaTecnico()
-                               + "',CEDULA_CLIENTE = '"+caso.getCedulaCliente()
-                               + "',ID_PRODUCTO_REEMPLAZAR = '"+caso.getIdProductoReemplazar()
-                               + "',DESCRIPCION_PROBLEMA = '"+caso.getDescripcionProblema()
+                               + ",CEDULA_TECNICO = "+caso.getCedulaTecnico()
+                               + ",CEDULA_CLIENTE = "+caso.getCedulaCliente()
+                               + ",ID_PRODUCTO_REEMPLAZAR = "+caso.getIdProductoReemplazar()
+                               + ",DESCRIPCION_PROBLEMA = '"+caso.getDescripcionProblema()
                                + "',DESCRIPCION_SOLUCION = '"+caso.getDescripcionSolucion()
-                               + "',ESTADO_CASO = "+caso.getEstadoCaso()+"' "
+                               + "',ESTADO_CASO = '"+caso.getEstadoCaso()+"' "
                                + "WHERE NUMERO_CASO = " + id + "";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);

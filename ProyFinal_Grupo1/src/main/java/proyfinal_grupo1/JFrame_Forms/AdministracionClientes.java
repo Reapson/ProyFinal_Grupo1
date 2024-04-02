@@ -441,14 +441,14 @@ public class AdministracionClientes extends javax.swing.JFrame {
                     //Se crean las variables que combinen con los atributos de la bd
                     Cliente cliente = new Cliente(txtDescuentoEmpresarial.getText().trim(),txtDescuentoTerceraEdad.getText().trim(), txtSexo.getText().trim(), Integer.parseInt(txtCedula.getText().trim()), txtNombre.getText().trim(),
                                                         txtApellido.getText().trim(), txtProvincia.getText().trim(), txtCanton.getText().trim(), txtCorreo.getText().trim(), 
-                                                        Integer.parseInt(txtTelefono.getText().trim()));
+                                                        Double.parseDouble(txtTelefono.getText().trim()));
                     //Conexion a bd
                     Connection conexion = conn.conectarBD();
                     //Se crea el statement
                     Statement statement = conexion.createStatement();
                     //Codigo sql a ejecutar
-                    String sql = "INSERT INTO clientes(CEDULA_CLIENTE, NOMBRE_CLIENTE, APELLIDO_CLIENTE, PROVINCIA_CLIENTE, CANTON_CLIENTE, CANTON_CLIENTE, TELEFONO_CLIENTE, DESCUENTO_EMPRESARIAL, DESCUENTO_TERCERA_EDAD, SEXO)"
-                                +"VALUES(" +cliente.getNumeroCedula()+",'"
+                    String sql = "INSERT INTO clientes(CEDULA_CLIENTE, NOMBRE_CLIENTE, APELLIDO_CLIENTE, PROVINCIA_CLIENTE, CANTON_CLIENTE, CORREO_CLIENTE, TELEFONO_CLIENTE, DESCUENTO_EMPRESARIAL, DESCUENTO_TERCERA_EDAD, SEXO)"
+                                +" VALUES(" +cliente.getNumeroCedula()+",'"
                                            +cliente.getNombre()+"','"
                                            +cliente.getPrimerApellido()+"','"
                                            +cliente.getProvincia()+"','"
@@ -456,8 +456,8 @@ public class AdministracionClientes extends javax.swing.JFrame {
                                            +cliente.getCorreo()+"',"
                                            +cliente.getNumTelefono()+",'"
                                            +cliente.getDescuentoEmpresarial()+"','"
-                                           +cliente.getDescuentoTerceraEdad()+"',')"
-                                           +cliente.getSexo()+"',')";
+                                           +cliente.getDescuentoTerceraEdad()+"','"
+                                           +cliente.getSexo()+"')";
                     
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);
@@ -506,7 +506,7 @@ public class AdministracionClientes extends javax.swing.JFrame {
                                + "',CORREO_CLIENTE = '"+cliente.getCorreo()
                                + "',TELEFONO_CLIENTE = "+cliente.getNumTelefono()
                                + ",DESCUENTO_EMPRESARIAL = '"+cliente.getDescuentoEmpresarial()
-                               + "',DESCUENTO_TERCERA_EDAD = '"+cliente.getDescuentoTerceraEdad()+"' "
+                               + "',DESCUENTO_TERCERA_EDAD = '"+cliente.getDescuentoTerceraEdad()
                                + "',SEXO = '"+cliente.getSexo()+"' "
                                + "WHERE CEDULA_CLIENTE = " + id + "";
                     //Se ejecuta el update que es el comando escrito anteriormente

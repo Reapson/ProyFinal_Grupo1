@@ -466,16 +466,16 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                     Statement statement = conexion.createStatement();
                     //Codigo sql a ejecutar
                     String sql = "INSERT INTO tecnicos(CEDULA_TECNICO, NOMBRE_TECNICO, APELLIDO_TECNICO, PROVINCIA_TECNICO, CANTON_TECNICO, CORREO_TECNICO, TELEFONO_TECNICO, SALARIO_MENSUAL, VACACIONES_PENDIENTES, AREA_ESPECIALIZACION, MARCA_ESPECIALIZACION)"
-                                +"VALUES(" +tecnico.getNumeroCedula()+",'"
+                                +" VALUES(" +tecnico.getNumeroCedula()+",'"
                                            +tecnico.getNombre()+"','"
                                            +tecnico.getPrimerApellido()+"','"
                                            +tecnico.getProvincia()+"','"
                                            +tecnico.getCanton()+"','"
                                            +tecnico.getCorreo()+"',"
-                                           +tecnico.getNumTelefono()+",'"
-                                           +tecnico.getSalarioMensual()+"','"
-                                           +tecnico.getVacacionesPendientes()+"')"
-                                           +tecnico.getAreaEspecializacion()+"')"
+                                           +tecnico.getNumTelefono()+","
+                                           +tecnico.getSalarioMensual()+","
+                                           +tecnico.getVacacionesPendientes()+",'"
+                                           +tecnico.getAreaEspecializacion()+"','"
                                            +tecnico.getMarcaEspecializacion()+"')";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);
@@ -568,11 +568,11 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                                + "',CANTON_TECNICO = '"+tecnico.getCanton()
                                + "',CORREO_TECNICO = '"+tecnico.getCorreo()
                                + "',TELEFONO_TECNICO = "+tecnico.getNumTelefono()
-                               + ",SALARIO_MENSUAL = '"+tecnico.getSalarioMensual()
-                               + "',VACACIONES_PENDIENTES = '"+tecnico.getVacacionesPendientes()+"' "
-                               + "',AREA_ESPECIALIZACION = '"+tecnico.getAreaEspecializacion()+"' "
-                               + "',MARCA_ESPECIALIZACION = '"+tecnico.getMarcaEspecializacion()+"' "
-                               + "WHERE CEDULA_TECNICO = " + id + "";
+                               + ",SALARIO_MENSUAL = "+tecnico.getSalarioMensual()
+                               + ",VACACIONES_PENDIENTES = "+tecnico.getVacacionesPendientes()
+                               + ",AREA_ESPECIALIZACION = '"+tecnico.getAreaEspecializacion()
+                               + "',MARCA_ESPECIALIZACION = '"+tecnico.getMarcaEspecializacion()
+                               + "' WHERE CEDULA_TECNICO = " + id + "";
                     //Se ejecuta el update que es el comando escrito anteriormente
                     statement.executeUpdate(sql);
                     //Se informa si sale bien

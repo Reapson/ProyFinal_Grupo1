@@ -18,7 +18,7 @@ public class Cliente extends Persona{
     }
 
     //Getters and Setters
-    public String isDescuentoEmpresarial() {
+    public String getDescuentoEmpresarial() {
         return descuentoEmpresarial;
     }
 
@@ -26,7 +26,7 @@ public class Cliente extends Persona{
         this.descuentoEmpresarial = descuentoEmpresarial;
     }
 
-    public String isDescuentoTerceraEdad() {
+    public String getDescuentoTerceraEdad() {
         return descuentoTerceraEdad;
     }
 
@@ -61,13 +61,5 @@ public class Cliente extends Persona{
     @Override
     public void eliminarPersona(){
         //METODO PARA ELIMINAR UN REGISTRO DE LA ESTRUCTURA DE DATOS
-    }
-
-    public String getDescuentoEmpresarial() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public String getDescuentoTerceraEdad() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -171,7 +171,7 @@ public class Facturacion extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administración de Facturas");
+        setTitle("Administracion de Facturas");
         setBackground(new java.awt.Color(153, 204, 255));
         setResizable(false);
 
@@ -474,7 +474,17 @@ public class Facturacion extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
-
+                    
+                    //Reiniciar txtBoxes
+                    txtFactura.setText("");
+                    txtCaso.setText("");
+                    txtServicio.setText("");
+                    txtImpuestos.setText("");
+                    txtFinal.setText("");
+                    txtAno.setText("");
+                    txtMes.setText("");
+                    txtDia.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();
@@ -522,7 +532,17 @@ public class Facturacion extends javax.swing.JFrame {
                     }
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
-
+                    
+                    //Reiniciar txtBoxes
+                    txtFactura.setText("");
+                    txtCaso.setText("");
+                    txtServicio.setText("");
+                    txtImpuestos.setText("");
+                    txtFinal.setText("");
+                    txtAno.setText("");
+                    txtMes.setText("");
+                    txtDia.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

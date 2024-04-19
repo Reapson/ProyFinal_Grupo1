@@ -168,7 +168,7 @@ public class InventarioRepyCons extends javax.swing.JFrame {
         btnMenu1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administración de Proveedores");
+        setTitle("Administración de Repuestos y Consumibles");
         setBackground(new java.awt.Color(153, 204, 255));
         setResizable(false);
 
@@ -331,7 +331,7 @@ public class InventarioRepyCons extends javax.swing.JFrame {
         );
 
         jLabel18.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
-        jLabel18.setText("Administración de Repuestos y consumibles");
+        jLabel18.setText("Administración de Repuestos y Consumibles");
 
         btnMenu1.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnMenu1.setText("Menu");
@@ -428,6 +428,15 @@ public class InventarioRepyCons extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reiniciar txtBoxes
+                    txtCedula.setText("");
+                    txtnombreProducto.setText("");
+                    txtdescripcionProducto.setText("");
+                    txttipoObjeto.setText("");
+                    txtprecioCompra.setText("");
+                    txtprecioVenta.setText("");
+                    txtcantidad.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();
@@ -478,6 +487,15 @@ public class InventarioRepyCons extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reiniciar txtBoxes
+                    txtCedula.setText("");
+                    txtnombreProducto.setText("");
+                    txtdescripcionProducto.setText("");
+                    txttipoObjeto.setText("");
+                    txtprecioCompra.setText("");
+                    txtprecioVenta.setText("");
+                    txtcantidad.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

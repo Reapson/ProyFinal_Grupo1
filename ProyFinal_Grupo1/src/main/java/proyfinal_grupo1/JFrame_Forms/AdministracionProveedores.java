@@ -444,7 +444,18 @@ public class AdministracionProveedores extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
-
+                    
+                    //Reinicion txtBoxes
+                    txtEmpresa.setText("");
+                    txtProdReg.setText("");
+                    txtCedula.setText("");
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtProvincia.setText("");
+                    txtCanton.setText("");
+                    txtCorreo.setText("");
+                    txtTelefono.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();
@@ -497,6 +508,17 @@ public class AdministracionProveedores extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reinicion txtBoxes
+                    txtEmpresa.setText("");
+                    txtProdReg.setText("");
+                    txtCedula.setText("");
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtProvincia.setText("");
+                    txtCanton.setText("");
+                    txtCorreo.setText("");
+                    txtTelefono.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

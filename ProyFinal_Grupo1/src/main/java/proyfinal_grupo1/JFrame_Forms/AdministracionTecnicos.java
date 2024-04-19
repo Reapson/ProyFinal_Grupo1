@@ -184,7 +184,7 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administración de Proveedores");
+        setTitle("Administración de Tecnicos");
         setBackground(new java.awt.Color(153, 204, 255));
         setResizable(false);
 
@@ -481,6 +481,18 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                     statement.executeUpdate(sql);
                     //Se informa si sale bien
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");
+                    //Se reinician los textbox
+                    txtAreaEspecializacion.setText("");
+                    txtMarcaEspecializacion.setText("");
+                    txtSalarioMensual.setText("");
+                    txtVacPendientes.setText("");
+                    txtCedula.setText("");
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtProvincia.setText("");
+                    txtCanton.setText("");
+                    txtCorreo.setText("");
+                    txtTelefono.setText("");
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
@@ -583,6 +595,19 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Se reinician los textbox
+                    txtAreaEspecializacion.setText("");
+                    txtMarcaEspecializacion.setText("");
+                    txtSalarioMensual.setText("");
+                    txtVacPendientes.setText("");
+                    txtCedula.setText("");
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtProvincia.setText("");
+                    txtCanton.setText("");
+                    txtCorreo.setText("");
+                    txtTelefono.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

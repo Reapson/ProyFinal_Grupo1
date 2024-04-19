@@ -168,7 +168,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administración de Proveedores");
+        setTitle("Administración de Casos");
         setBackground(new java.awt.Color(153, 204, 255));
         setResizable(false);
 
@@ -425,6 +425,15 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reiniciar txtBoxes
+                    txtnumCaso.setText("");
+                    txtcedulaTecnico.setText("");
+                    txtcedulaCliente.setText("");
+                    txtidProductoReemplazar.setText("");
+                    txtdescripcionProblema.setText("");
+                    txtdescripcionSolucion.setText("");
+                    txtestadoCaso.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();
@@ -479,6 +488,15 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reiniciar txtBoxes
+                    txtnumCaso.setText("");
+                    txtcedulaTecnico.setText("");
+                    txtcedulaCliente.setText("");
+                    txtidProductoReemplazar.setText("");
+                    txtdescripcionProblema.setText("");
+                    txtdescripcionSolucion.setText("");
+                    txtestadoCaso.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

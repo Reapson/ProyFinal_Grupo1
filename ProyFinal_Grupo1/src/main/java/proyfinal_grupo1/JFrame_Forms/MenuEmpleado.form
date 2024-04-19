@@ -34,7 +34,10 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-          <Component id="pnlMenu" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="pnlMenu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -57,13 +60,16 @@
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnFacturacion" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnAdminCasos" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnAdminRepyCons" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnAdminProveedores" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnAdminClientes" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnAdminTecnicos" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnReportes" min="-2" pref="390" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnFacturacion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnAdminCasos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnAdminRepyCons" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnAdminProveedores" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnAdminClientes" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnAdminTecnicos" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -88,7 +94,9 @@
                   <Component id="btnAdminCasos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnFacturacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnReportes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -203,6 +211,23 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Carbanticona Tech Experts"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnReportes">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Corbel" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Reportes"/>
+            <Property name="alignmentY" type="float" value="0.0"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportesActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

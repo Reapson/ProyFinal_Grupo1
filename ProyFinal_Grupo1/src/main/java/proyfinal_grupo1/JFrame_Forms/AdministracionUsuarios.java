@@ -167,7 +167,7 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administración de Proveedores");
+        setTitle("Administración de Usuarios");
         setBackground(new java.awt.Color(153, 204, 255));
         setResizable(false);
 
@@ -407,6 +407,12 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
+                    
+                    //Reiniciar apartados de insercion de datos
+                    rboAdministrador.setSelected(false);
+                    rboRegular.setSelected(false);
+                    txtContrasena.setText("");
+                    txtCedula.setText("");
 
                     //Cerrar
                     statement.close();
@@ -460,6 +466,12 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reiniciar apartados de insercion de datos
+                    rboAdministrador.setSelected(false);
+                    rboRegular.setSelected(false);
+                    txtContrasena.setText("");
+                    txtCedula.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

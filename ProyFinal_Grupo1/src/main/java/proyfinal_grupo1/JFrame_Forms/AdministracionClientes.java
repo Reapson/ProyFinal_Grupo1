@@ -465,6 +465,18 @@ public class AdministracionClientes extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
+                    
+                    //Reiniciar datos textboxes
+                    txtDescuentoEmpresarial.setText("");
+                    txtDescuentoTerceraEdad.setText("");
+                    txtSexo.setText("");
+                    txtCedula.setText("");
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtProvincia.setText("");
+                    txtCanton.setText("");
+                    txtCorreo .setText("");
+                    txtTelefono.setText("");
 
                     //Cerrar
                     statement.close();
@@ -519,6 +531,18 @@ public class AdministracionClientes extends javax.swing.JFrame {
                     //Cargar tabla para que se muestren los reemplazos de la bd de inmediato
                     cargarTabla();
 
+                    //Reiniciar datos textboxes
+                    txtDescuentoEmpresarial.setText("");
+                    txtDescuentoTerceraEdad.setText("");
+                    txtSexo.setText("");
+                    txtCedula.setText("");
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtProvincia.setText("");
+                    txtCanton.setText("");
+                    txtCorreo .setText("");
+                    txtTelefono.setText("");
+                    
                     //Cerrar
                     statement.close();
                     conexion.close();

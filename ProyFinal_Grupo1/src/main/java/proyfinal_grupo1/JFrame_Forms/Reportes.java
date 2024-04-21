@@ -54,7 +54,7 @@ public class Reportes extends javax.swing.JFrame {
         });
 
         btnInventarioCritico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        btnInventarioCritico.setText("Inventario Critico (Menos de 3 Productos)");
+        btnInventarioCritico.setText("Inventario Critico");
         btnInventarioCritico.setAlignmentY(0.0F);
         btnInventarioCritico.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnInventarioCritico.addActionListener(new java.awt.event.ActionListener() {
@@ -174,15 +174,21 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCasosPorEstadoActionPerformed
 
     private void btnInventarioCriticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioCriticoActionPerformed
-        
+        InventarioCritico inventarioCritico = new InventarioCritico();
+        this.dispose();
+        inventarioCritico.setVisible(true);
     }//GEN-LAST:event_btnInventarioCriticoActionPerformed
 
     private void btnFacturacionPorMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturacionPorMesActionPerformed
-        
+        FacturacionPorMes facPorMes = new FacturacionPorMes();
+        this.dispose();
+        facPorMes.setVisible(true);
     }//GEN-LAST:event_btnFacturacionPorMesActionPerformed
 
     private void btnClienteConMasCasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteConMasCasosActionPerformed
-        
+        ClienteConMasCasos clienteConMasCasos = new ClienteConMasCasos();
+        this.dispose();
+        clienteConMasCasos.setVisible(true);
     }//GEN-LAST:event_btnClienteConMasCasosActionPerformed
 
     private void btnCasosPorTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCasosPorTecnicoActionPerformed

@@ -134,14 +134,14 @@
                                   <Component id="jLabel11" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtcedulaTecnico" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtcedulaCliente" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtidProductoReemplazar" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtdescripcionProblema" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtdescripcionSolucion" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtestadoCaso" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtnumCaso" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtcedulaTecnico" pref="150" max="32767" attributes="0"/>
+                                  <Component id="txtcedulaCliente" pref="150" max="32767" attributes="0"/>
+                                  <Component id="txtidProductoReemplazar" pref="150" max="32767" attributes="0"/>
+                                  <Component id="txtdescripcionProblema" pref="150" max="32767" attributes="0"/>
+                                  <Component id="txtdescripcionSolucion" pref="150" max="32767" attributes="0"/>
+                                  <Component id="txtnumCaso" pref="150" max="32767" attributes="0"/>
+                                  <Component id="cmbEstado" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
@@ -195,7 +195,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtestadoCaso" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                       <Component id="btnInsertar" min="-2" max="-2" attributes="0"/>
@@ -282,8 +282,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtdescripcionSolucion">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtestadoCaso">
-            </Component>
             <Component class="javax.swing.JTextField" name="txtnumCaso">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnumCasoActionPerformed"/>
@@ -330,6 +328,24 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbEstado">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Seleccione..."/>
+                    <StringItem index="1" value="Pendiente"/>
+                    <StringItem index="2" value="En Proceso"/>
+                    <StringItem index="3" value="Resuelto"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbEstadoActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

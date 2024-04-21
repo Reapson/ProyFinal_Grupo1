@@ -125,7 +125,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
     //Metodo para revisar que todas las casillas tengan un valor
     private boolean checkCasillas(){
         if("".equals(txtnumCaso.getText()) || "".equals(txtcedulaTecnico.getText()) || "".equals(txtcedulaCliente.getText()) ||
-                "".equals(txtidProductoReemplazar.getText()) || "".equals(txtdescripcionProblema.getText()) || "".equals(txtdescripcionSolucion.getText()) || "".equals(txtestadoCaso.getText())){
+                "".equals(txtidProductoReemplazar.getText()) || "".equals(txtdescripcionProblema.getText()) || "".equals(txtdescripcionSolucion.getText()) || "".equals(cmbEstado.getSelectedItem().toString())){
             JOptionPane.showMessageDialog(null, "Debe de llenar todas las casillas!");
             return false;
         }else{
@@ -158,12 +158,12 @@ public class AdministracionCasos extends javax.swing.JFrame {
         txtidProductoReemplazar = new javax.swing.JTextField();
         txtdescripcionProblema = new javax.swing.JTextField();
         txtdescripcionSolucion = new javax.swing.JTextField();
-        txtestadoCaso = new javax.swing.JTextField();
         txtnumCaso = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btnInsertar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        cmbEstado = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
 
@@ -250,6 +250,13 @@ public class AdministracionCasos extends javax.swing.JFrame {
             }
         });
 
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Pendiente", "En Proceso", "Resuelto" }));
+        cmbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -271,14 +278,14 @@ public class AdministracionCasos extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcedulaTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtidProductoReemplazar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdescripcionProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdescripcionSolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtestadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnumCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtcedulaTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtcedulaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtidProductoReemplazar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtdescripcionProblema, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtdescripcionSolucion, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtnumCaso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(15, 15, 15))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -319,7 +326,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtestadoCaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
                 .addComponent(btnInsertar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -403,7 +410,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
                      Integer.parseInt(txtidProductoReemplazar.getText().trim()),
                      txtdescripcionProblema.getText().trim(),
                      txtdescripcionSolucion.getText().trim(),
-                     txtestadoCaso.getText().trim());
+                     cmbEstado.getSelectedItem().toString());
 
                     //Conexion a bd
                     Connection conexion = conn.conectarBD();
@@ -458,7 +465,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
                      Integer.parseInt(txtidProductoReemplazar.getText().trim()),
                      txtdescripcionProblema.getText().trim(),
                      txtdescripcionSolucion.getText().trim(),
-                     txtestadoCaso.getText().trim());
+                     cmbEstado.getSelectedItem().toString());
 
                 //Variable para usar en el script sql al ejecutar
                 int id = obtenerCedula();
@@ -552,6 +559,10 @@ public class AdministracionCasos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnumCasoActionPerformed
 
+    private void cmbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbEstadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -595,6 +606,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnMenu;
+    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -612,7 +624,6 @@ public class AdministracionCasos extends javax.swing.JFrame {
     private javax.swing.JTextField txtcedulaTecnico;
     private javax.swing.JTextField txtdescripcionProblema;
     private javax.swing.JTextField txtdescripcionSolucion;
-    private javax.swing.JTextField txtestadoCaso;
     private javax.swing.JTextField txtidProductoReemplazar;
     private javax.swing.JTextField txtnumCaso;
     // End of variables declaration//GEN-END:variables

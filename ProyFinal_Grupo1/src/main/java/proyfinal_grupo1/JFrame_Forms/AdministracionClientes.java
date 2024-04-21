@@ -547,9 +547,11 @@ public class AdministracionClientes extends javax.swing.JFrame {
                     cargarTabla();
                     
                     //Reiniciar datos textboxes
-                    txtDescuentoEmpresarial.setText("");
-                    txtDescuentoTerceraEdad.setText("");
-                    txtSexo.setText("");
+                    rboSiAplica.setSelected(false);
+                    rboNoAplica.setSelected(false);
+                    rboAplicado.setSelected(false);
+                    rboNoAplicado.setSelected(false);
+                    cmbSexo.setSelectedIndex(0);
                     txtCedula.setText("");
                     txtNombre.setText("");
                     txtApellido.setText("");
@@ -624,9 +626,11 @@ public class AdministracionClientes extends javax.swing.JFrame {
                     cargarTabla();
 
                     //Reiniciar datos textboxes
-                    txtDescuentoEmpresarial.setText("");
-                    txtDescuentoTerceraEdad.setText("");
-                    txtSexo.setText("");
+                    rboSiAplica.setSelected(false);
+                    rboNoAplica.setSelected(false);
+                    rboAplicado.setSelected(false);
+                    rboNoAplicado.setSelected(false);
+                    cmbSexo.setSelectedIndex(0);
                     txtCedula.setText("");
                     txtNombre.setText("");
                     txtApellido.setText("");

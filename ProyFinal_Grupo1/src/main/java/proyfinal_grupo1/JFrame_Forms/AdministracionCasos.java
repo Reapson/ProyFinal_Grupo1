@@ -439,7 +439,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     txtidProductoReemplazar.setText("");
                     txtdescripcionProblema.setText("");
                     txtdescripcionSolucion.setText("");
-                    txtestadoCaso.setText("");
+                    cmbEstado.setSelectedIndex(0);
                     
                     //Cerrar
                     statement.close();
@@ -502,7 +502,7 @@ public class AdministracionCasos extends javax.swing.JFrame {
                     txtidProductoReemplazar.setText("");
                     txtdescripcionProblema.setText("");
                     txtdescripcionSolucion.setText("");
-                    txtestadoCaso.setText("");
+                    cmbEstado.setSelectedIndex(0);
                     
                     //Cerrar
                     statement.close();

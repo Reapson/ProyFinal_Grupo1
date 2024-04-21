@@ -485,8 +485,8 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                     //Se informa si sale bien
                     JOptionPane.showMessageDialog(null, "Registro insertado con exito");
                     //Se reinician los textbox
-                    txtAreaEspecializacion.setText("");
-                    txtMarcaEspecializacion.setText("");
+                    cmbAreaEspecializacion.setSelectedIndex(0);
+                    cmbMarcaEspecializacion.setSelectedIndex(0);
                     txtSalarioMensual.setText("");
                     txtVacPendientes.setText("");
                     txtCedula.setText("");
@@ -599,8 +599,8 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                     cargarTabla();
 
                     //Se reinician los textbox
-                    txtAreaEspecializacion.setText("");
-                    txtMarcaEspecializacion.setText("");
+                    cmbAreaEspecializacion.setSelectedIndex(0);
+                    cmbMarcaEspecializacion.setSelectedIndex(0);
                     txtSalarioMensual.setText("");
                     txtVacPendientes.setText("");
                     txtCedula.setText("");

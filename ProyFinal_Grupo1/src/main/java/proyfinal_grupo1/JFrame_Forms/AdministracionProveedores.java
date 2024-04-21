@@ -489,7 +489,8 @@ public class AdministracionProveedores extends javax.swing.JFrame {
                     
                     //Reinicion txtBoxes
                     txtEmpresa.setText("");
-                    txtProdReg.setText("");
+                    rboRepuesto.setSelected(false);
+                    rboConsumible.setSelected(false);
                     txtCedula.setText("");
                     txtNombre.setText("");
                     txtApellido.setText("");
@@ -558,7 +559,8 @@ public class AdministracionProveedores extends javax.swing.JFrame {
 
                     //Reinicion txtBoxes
                     txtEmpresa.setText("");
-                    txtProdReg.setText("");
+                    rboRepuesto.setSelected(false);
+                    rboConsumible.setSelected(false);
                     txtCedula.setText("");
                     txtNombre.setText("");
                     txtApellido.setText("");

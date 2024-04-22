@@ -261,7 +261,6 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
                 .addComponent(rboRegular))
         );
 
-        txtContrasena.setText("jPasswordField1");
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContrasenaActionPerformed(evt);

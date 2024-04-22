@@ -41,7 +41,7 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
         String PROVINCIA_TECNICO;
         String CANTON_TECNICO;
         String CORREO_TECNICO;
-        Double TELEFONO_TECNICO;
+        int TELEFONO_TECNICO;
         Double SALARIO_MENSUAL;
         Double VACACIONES_PENDIENTES;
         String AREA_ESPECIALIZACION;
@@ -73,7 +73,7 @@ public class AdministracionTecnicos extends javax.swing.JFrame {
                 PROVINCIA_TECNICO = resultset.getString("PROVINCIA_TECNICO");
                 CANTON_TECNICO = resultset.getString("CANTON_TECNICO");
                 CORREO_TECNICO = resultset.getString("CORREO_TECNICO");
-                TELEFONO_TECNICO = resultset.getDouble("TELEFONO_TECNICO");
+                TELEFONO_TECNICO = resultset.getInt("TELEFONO_TECNICO");
                 SALARIO_MENSUAL = resultset.getDouble("SALARIO_MENSUAL");
                 VACACIONES_PENDIENTES = resultset.getDouble("VACACIONES_PENDIENTES");
                 AREA_ESPECIALIZACION = resultset.getString("AREA_ESPECIALIZACION");

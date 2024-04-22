@@ -192,7 +192,9 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClienteConMasCasosActionPerformed
 
     private void btnCasosPorTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCasosPorTecnicoActionPerformed
-        
+        CasosPorTecnico casosPorTecnico = new CasosPorTecnico();
+        this.dispose();
+        casosPorTecnico.setVisible(true);
     }//GEN-LAST:event_btnCasosPorTecnicoActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
